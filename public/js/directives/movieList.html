@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <td><a ng-href={{"#/movies/"+movie.id}} class="btn btn-primary">Смотреть</a></td>
-                <td></td>
+                <td><button ng-click="removeMovie(movie.id)" class="btn btn-danger">Удалить</button></td>
             </tr>
         </table>
     </div>

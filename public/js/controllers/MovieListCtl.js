@@ -37,6 +37,15 @@ module.exports = function (app) {
                     $scope.movies = data;
                 })
         };
+        $scope.removeMovie = function (id) {
+            movieService.removeMovie(id).success(function (data) {
+                if(data.status == 'ok'){
+                    $scope.movies = $scope.movies.filter(function (movie) {
+                        return id !== movie.id
+                    })
+                }
+            })
+        };
         $scope.$watch('movies', function () {
             $timeout(function () {
                 $(".movie-descr").dotdotdot({

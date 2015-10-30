@@ -41,6 +41,7 @@ app.post('/actors', function (req, res) {
             res.send({status: 'ok',id:id})
         }
     }).catch(function (err) {
+        console.log(err);
         res.send({status:'error'})
     })
 });
@@ -51,6 +52,7 @@ app.delete('/actors/:id', function (req, res) {
             res.send({status: 'ok'})
         }
     }).catch(function (err) {
+        console.log(err);
         res.send({status:'error'})
     })
 });
@@ -69,6 +71,7 @@ app.post('/countries', function (req, res) {
             res.send({status: 'ok',id:id})
         }
     }).catch(function (err) {
+        console.log(err);
        res.send({status:'error'})
     })
 });
@@ -79,6 +82,7 @@ app.put('/countries', function (req, res) {
             res.send({status: 'ok'})
         }
     }).catch(function (err) {
+        console.log(err);
         res.send({status:'error'})
     })
 });
@@ -89,6 +93,7 @@ app.delete('/countries/:id', function (req, res) {
             res.send({status: 'ok'})
         }
     }).catch(function (err) {
+        console.log(err);
         res.send({status:'error'})
     })
 });
@@ -115,6 +120,7 @@ app.post('/directors', function (req, res) {
             res.send({status:'ok'})
         }
     }).catch(function (err) {
+        console.log(err);
         res.send({status:'error'})
     })
 });
@@ -125,6 +131,7 @@ app.put('/directors', function (req, res) {
             res.send({status:'ok'})
         }
     }).catch(function (err) {
+        console.log(err);
         res.send({status:'error'})
     })
 });
@@ -134,6 +141,7 @@ app.delete('/directors/:id', function (req, res) {
             res.send({status:'ok'})
         }
     }).catch(function (err) {
+        console.log(err);
         res.send({status:'error'})
     })
 })
@@ -143,6 +151,17 @@ app.get('/movies', function (req, res) {
         res.send(data)
     }).catch(function (err) {
         console.log(err)
+    })
+});
+
+app.delete('/movies/:id', function (req, res) {
+    DB.deleteValueById('movies',req.params.id).then(function (data) {
+        if(data){
+            res.send({status:'ok'})
+        }
+    }).catch(function (err) {
+        console.log(err);
+        res.send({status:'error'})
     })
 });
 

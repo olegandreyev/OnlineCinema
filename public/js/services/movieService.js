@@ -20,6 +20,9 @@ module.exports= function (app) {
             getAllMovies: function () {
                 return $http.get('/movies')
             },
+            removeMovie: function (id) {
+              return $http.delete('/movies/'+id)
+            },
             getAllActors: function () {
                 return $http.get('/actors')
             },

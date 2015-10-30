@@ -3,7 +3,7 @@
  */
 
 module.exports = function (app) {
-    app.controller('AddCountryCtl',['$scope','$window','movieService', function ($scope,$window,movieService) {
+    app.controller('CountriesCtl',['$scope','$window','movieService', function ($scope,$window,movieService) {
         $scope.country = {};
        var editCountry = - 1;
 

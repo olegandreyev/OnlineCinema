@@ -5,7 +5,7 @@
 
 module.exports = function (app) {
 
-    app.controller('AddDirectorCtl',['$scope','$window','movieService', function ($scope,$window, movieService) {
+    app.controller('DirectorsCtl',['$scope','$window','movieService', function ($scope,$window, movieService) {
         $scope.director = {};
         var editDirector = - 1;
 

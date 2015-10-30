@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-sm-6 ">
+            <h2>Добавления Актера</h2>
+            <form ng-submit="createActor($event)">
+                <div class="form-group">
+                    <label for="aName">Фамилия и инициалы</label>
+                    <input ng-model="actor.fullName" required type="text" class="form-control" id="aName" placeholder="Д.Депп">
+                </div>
+                <input value="Добавить" type="submit" class="btn btn-primary">
+                <button go-back class="btn btn-warning">Назад</button>
+            </form>
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-6 ">
+            <h2>Список актеров</h2>
+            <ul class="list-group actors">
+                <li class="list-group-item" ng-repeat="actor in actorList">
+                    <form ng-submit="updateActor(actor)" ng-show="isEdit(actor.id)" class="form-inline">
+                        <input required style="width:150px" type="text" class="form-control" ng-model="actor.fullName"/>
+                        <span ng-click="removeActor(actor.id)" class="pull-right glyphicon glyphicon-remove"></span>
+                    </form>
+                    <span class="actor-item" ng-hide="isEdit(actor.id)" ng-click="editActor(actor.id)">{{actor.fullName}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

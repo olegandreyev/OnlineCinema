@@ -17,6 +17,44 @@ app.use(bodyParser.json());
 var DB = require('./DBHelper');
 
 
+
+app.get('/actors', function (req, res) {
+    DB.getTableValues('actors').then(function (data) {
+        res.send(data)
+    }).catch(function (err) {
+        console.log(err);
+    })
+});
+
+app.put('/actors', function (req, res) {
+   DB.updateActor(req.body).then(function (data) {
+       if(data) {
+           res.send({status:'ok'});
+       }
+   }).catch(function (err) {
+       console.log(err);
+   })
+});
+app.post('/actors', function (req, res) {
+    DB.createActor(req.body).then(function (id) {
+        if(id) {
+            res.send({status: 'ok',id:id})
+        }
+    }).catch(function (err) {
+        res.send({status:'error'})
+    })
+});
+
+app.delete('/actors/:id', function (req, res) {
+    DB.deleteValueById('actors',req.params.id).then(function (data) {
+        if(data) {
+            res.send({status: 'ok'})
+        }
+    }).catch(function (err) {
+        res.send({status:'error'})
+    })
+});
+
 app.get('/countries', function (req, res) {
     DB.getTableValues('countries').then(function (data) {
       res.send(data)

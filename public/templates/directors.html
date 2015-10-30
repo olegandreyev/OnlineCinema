@@ -13,12 +13,12 @@
             <input required ng-model="director.birthday" type="date" class="form-control" id="date" placeholder="Дата рождения">
         </div>
         <input value="Добавить" type="submit" class="btn btn-primary">
-        <button go-back class="btn btn-warning">Отмена</button>
+        <button go-back class="btn btn-warning">Назад</button>
     </form>
         </div>
         <div class="col-md-6 col-lg-6 col-sm-6 ">
             <h2>Список Режиссеров</h2>
-            <ul class="list-group countries">
+            <ul class="list-group directors">
                 <li class="list-group-item" ng-repeat="director in directorList">
                     <form ng-submit="updateDirector(director)" ng-show="isEdit(director.id)" class="form-inline">
                         <input required style="width:150px" type="text" class="form-control" ng-model="director.fullName"/>

@@ -115,6 +115,22 @@ var DB = {
                 res(rows.insertId)
             })
         })
+    },
+    createActor: function (actor) {
+        return new Promise(function (res, rej) {
+            connection.query('INSERT INTO actors SET ?',[actor], function (err, rows, fields) {
+                if(err) rej(err);
+                res(rows.insertId)
+            })
+        })
+    },
+    updateActor : function (data) {
+        return new Promise(function (res, rej) {
+            connection.query('UPDATE actors SET ? WHERE id = ?',[{fullName:data.fullName},data.id], function (err, rows, fields) {
+                if(err)rej(err);
+                res(rows)
+            })
+        })
     }
 };
 module.exports = DB;

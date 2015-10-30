@@ -9,7 +9,8 @@ require('./services/movieService')(app);
 require('./controllers/MovieListCtl')(app);
 require('./controllers/WatchCtl')(app);
 require('./controllers/DirectorsCtl')(app);
-require('./controllers/CountryCtl')(app);
+require('./controllers/CountriesCtl')(app);
+require('./controllers/ActorsCtl')(app);
 //directives
 require('./directives/genresList')(app);
 require('./directives/movieList')(app);
@@ -30,12 +31,16 @@ app.config(['$routeProvider',
                 controller:'WatchCtl'
             })
             .when('/addDirector',{
-                templateUrl:'templates/director.html',
-                controller:'AddDirectorCtl'
+                templateUrl:'templates/directors.html',
+                controller:'DirectorsCtl'
             })
             .when('/addCountry',{
                 templateUrl:'templates/countries.html',
-                controller:'AddCountryCtl'
+                controller:'CountriesCtl'
+            })
+            .when('/addActor',{
+                templateUrl:'templates/actors.html',
+                controller:'ActorsCtl'
             })
             .otherwise({
                 redirectTo:'/'

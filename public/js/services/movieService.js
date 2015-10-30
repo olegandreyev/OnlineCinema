@@ -20,6 +20,9 @@ module.exports= function (app) {
             getAllMovies: function () {
                 return $http.get('/movies')
             },
+            getAllActors: function () {
+                return $http.get('/actors')
+            },
             getMoviesByGenre: function (genreId) {
                 return $http.get('/movies/'+genreId)
             },
@@ -46,6 +49,15 @@ module.exports= function (app) {
             },
             removeCountry: function (id) {
                 return $http.delete('/countries/'+id)
+            },
+            createActor: function (actor) {
+                return $http.post('/actors',actor)
+            },
+            updateActor: function (actor) {
+               return $http.put('/actors',actor)
+            },
+            removeActor: function (id) {
+                return $http.delete('/actors/'+id)
             }
         };
     }])

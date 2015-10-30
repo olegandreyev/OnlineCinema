@@ -1,0 +1,61 @@
+@import "mixins";
+
+.jumbotron{
+  background: url(../resources/poster.jpg) no-repeat 20% center;
+  h1,p{
+    color: white;
+  }
+}
+  img{
+    width: 200px;
+    height: 300px;
+    float: left;
+    border-radius: 10px;
+    .watch & {
+      width: 300px;
+      height: 400px;
+      float: left;
+      border-radius: 20px;
+    }
+  }
+.info{
+  font-size: 12px;
+}
+table{
+  td:first-child{
+    font-weight: bold;
+  }
+}
+.movie-descr{
+  height: 157px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.genres{
+  font-size: 12px;
+}
+.country-item,.director-item{
+  display: block;
+  width: 80%;
+  height: 100%;
+}
+h5{
+  text-decoration: underline;
+}
+h3{
+  a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .watch &{
+    text-align: center;
+    margin-bottom: 21px;
+  }
+}
+.watch {
+  margin-bottom: 10px;
+}
+iframe{
+  display: block;
+  margin: 0 auto;
+}

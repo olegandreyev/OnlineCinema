@@ -1,0 +1,38 @@
+<div ng-repeat="movie in movies" class="movie row">
+    <h3><a ng-href={{"#/movies/"+movie.id}}>{{movie.title}}</a></h3>
+    <img ng-src={{".."+movie.posterSrc}} alt=""/>
+    <div class="info col-md-5 col-lg-5 col-sm-5 col-xs-5">
+        <p class="movie-descr"> {{movie.description}}</p>
+        <table>
+            <tr>
+                <td>Режиссер:</td>
+                <td>{{movie.director}}</td>
+            </tr>
+            <tr>
+                <td>Страна:</td>
+                <td>{{movie.country}}</td>
+            </tr>
+            <tr>
+                <td>Бюджет:</td>
+                <td>{{movie.fond | currency: "$"}}</td>
+            </tr>
+            <tr>
+                <td>Жанр:</td>
+                <td>{{movie.genre}}</td>
+            </tr>
+
+            <tr>
+                <td>Год:</td>
+                <td>{{movie.year}}</td>
+            </tr>
+            <tr>
+                <td>Рейтинг:</td>
+                <td>{{movie.rating}}</td>
+            </tr>
+            <tr>
+                <td><a ng-href={{"#/movies/"+movie.id}} class="btn btn-primary">Смотреть</a></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>

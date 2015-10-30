@@ -1,0 +1,34 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-sm-6 ">
+    <h2>Добавления режиссера</h2>
+    <form ng-submit="createDirector($event)">
+        <div class="form-group">
+            <label for="dName">ФИО режиссера</label>
+            <input ng-model="director.fullName" required type="text" class="form-control" id="dName" placeholder="Иванов Иван Иваныч">
+        </div>
+        <div class="form-group">
+            <label for="date">Дата рождения</label>
+            <input required ng-model="director.birthday" type="date" class="form-control" id="date" placeholder="Дата рождения">
+        </div>
+        <input value="Добавить" type="submit" class="btn btn-primary">
+        <button go-back class="btn btn-warning">Отмена</button>
+    </form>
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-6 ">
+            <h2>Список Режиссеров</h2>
+            <ul class="list-group countries">
+                <li class="list-group-item" ng-repeat="director in directorList">
+                    <form ng-submit="updateDirector(director)" ng-show="isEdit(director.id)" class="form-inline">
+                        <input required style="width:150px" type="text" class="form-control" ng-model="director.fullName"/>
+                        <input required style="width:150px" type="date" class="form-control" ng-model="director.birthday"/>
+                        <span ng-click="removeDirector(director.id)" class="pull-right glyphicon glyphicon-remove"></span>
+                    </form>
+                    <span class="director-item" ng-hide="isEdit(director.id)" ng-click="editDirector(director.id)">{{director.fullName}}</span>
+                    <span class="director-item" ng-hide="isEdit(director.id)" ng-click="editDirector(director.id)">{{director.birthday | date:'dd.MM.yyyy'}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

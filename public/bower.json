@@ -1,0 +1,20 @@
+{
+  "name": "Online_Cinema",
+  "version": "1.0.0",
+  "authors": [
+    "Oleg <Olegdarkangel@bk.ru>"
+  ],
+  "description": "course work",
+  "main": "index.html",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "angular-route": "~1.4.7",
+    "bootstrap": "~3.3.5",
+    "angular": "~1.4.7",
+    "jquery": "~2.1.4",
+    "dotdotdot": "~1.7.4"
+  }
+}

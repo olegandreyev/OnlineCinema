@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-sm-6 ">
+            <h2>Добавления страны</h2>
+            <form ng-submit="createCountry($event)">
+                <div class="form-group">
+                    <label for="cTitle">Название страны</label>
+                    <input ng-model="country.title" required type="text" class="form-control" id="cTitle" placeholder="Италия">
+                </div>
+                <input value="Добавить" type="submit" class="btn btn-primary">
+                <button go-back class="btn btn-warning">Назад</button>
+            </form>
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-6 ">
+            <h2>Список стран</h2>
+            <ul class="list-group countries">
+                <li class="list-group-item" ng-repeat="country in countryList">
+                    <form ng-submit="updateCountry(country)" ng-show="isEdit(country.id)" class="form-inline">
+                        <input required style="width:280px" type="text" class="form-control" ng-model="country.title"/>
+                        <span ng-click="removeCountry(country.id)" class="pull-right glyphicon glyphicon-remove"></span>
+                    </form>
+                    <span class="country-item" ng-hide="isEdit(country.id)" ng-click="editCountry(country.id)">{{country.title}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

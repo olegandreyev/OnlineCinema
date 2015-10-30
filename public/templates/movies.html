@@ -1,0 +1,44 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <p>Brand</p>
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class=" dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Добавить <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#/addMovie">Фильм</a></li>
+                    <li><a href="#/addDirector">Режиссера</a></li>
+                    <li><a href="#/addCountry">Страну</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#/addActor">Актера</a></li>
+                </ul>
+            </li>
+        </ul>
+        <form ng-submit="searchMovies($event)" class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input ng-model="search" type="text" class="form-control" placeholder="Введите название">
+            </div>
+            <select ng-model="searchType" class="form-control">
+                <option  value="d.fullName">По режиссеру</option>
+                <option selected value="m.title">По назваванию</option>
+            </select>
+            <button type="submit" class="btn btn-default">Поиск фильма</button>
+        </form>
+
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <genres-list></genres-list>
+        <div class="col-md-9 col-lg-9 col-sm-9 col-xs-9">
+            <h5>Найдено фильмов: {{movies.length}}</h5>
+            <div class="container-fluid">
+                <movie-list movies='movies'></movie-list>
+            </div>
+        </div>
+    </div>
+</div>

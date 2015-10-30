@@ -1,0 +1,46 @@
+<div class="container">
+    <button go-back class="btn btn-warning btn-lg">Назад</button>
+    <div  class="watch movie row">
+        <h3>{{movie.title}}</h3>
+        <img  ng-src={{".."+movie.posterSrc}} alt=""/>
+        <div class="info col-md-7 col-lg-7 col-sm-7 col-xs-7">
+            <table class="table table-condensed">
+                <tr>
+                    <td>Режиссер:</td>
+                    <td>{{movie.director}}</td>
+                </tr>
+                <tr>
+                    <td>Страна:</td>
+                    <td>{{movie.country}}</td>
+                </tr>
+                <tr>
+                    <td>Бюджет:</td>
+                    <td>{{movie.fond | currency: "$"}}</td>
+                </tr>
+                <tr>
+                    <td>Жанр:</td>
+                    <td>{{movie.genre}}</td>
+                </tr>
+                <tr>
+                    <td>В главных ролях:</td>
+                    <td>{{mainActors.actors}}</td>
+                </tr>
+                <tr>
+                    <td>Год:</td>
+                    <td>{{movie.year}}</td>
+                </tr>
+                <tr>
+                    <td>Рейтинг:</td>
+                    <td>{{movie.rating}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <p> {{movie.description}}</p>
+
+    <div class="row">
+        <iframe src={{movie.vkSrc}} width="500" height="400"  frameborder="0">
+
+        </iframe>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+/**
+ * Created by ой on 25.10.2015.
+ */
+module.exports= function (app) {
+
+    app.factory('movieService',['$http', function ($http) {
+        return {
+            getGenres: function () {
+                return $http.get('/genres')
+            },
+            getCountries: function () {
+                return $http.get('/countries')
+            },
+            getDirectors: function () {
+                return $http.get('/directors')
+            },
+            removeDirector: function (id) {
+              return $http.delete('/directors/'+id)
+            },
+            getAllMovies: function () {
+                return $http.get('/movies')
+            },
+            getMoviesByGenre: function (genreId) {
+                return $http.get('/movies/'+genreId)
+            },
+            getMovieBySearch: function (type,string) {
+                return $http.get('/movies/search?'+type+'='+string)
+            },
+            getMovieById: function (id) {
+                return $http.get('movies/watch/'+id)
+            },
+            getActorsFromMovie: function (id) {
+                return $http.get('/movies/'+id+"/actors")
+            },
+            createDirector: function (director) {
+                return $http.post('/directors', director)
+            },
+            updateDirector: function (director) {
+              return $http.put('/directors',director)
+            },
+            createCountry: function (country) {
+                return $http.post('/countries',country)
+            },
+            updateCountry: function (country) {
+                return $http.put('/countries',country)
+            },
+            removeCountry: function (id) {
+                return $http.delete('/countries/'+id)
+            }
+        };
+    }])
+
+}

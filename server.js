@@ -143,7 +143,7 @@ app.delete('/directors/:id', function (req, res) {
         console.log(err);
         res.send({status:'error'})
     })
-})
+});
 
 app.get('/movies', function (req, res) {
     DB.getMovies().then(function (data) {
@@ -151,6 +151,13 @@ app.get('/movies', function (req, res) {
     }).catch(function (err) {
         console.log(err)
     })
+});
+app.get('/movies/data/:type', function (req, res) {
+     DB.getIDs('movies',req.params.type).then(function (data) {
+         res.send(data)
+     }).catch(function (err) {
+         console.log(err)
+     })
 });
 
 app.delete('/movies/:id', function (req, res) {

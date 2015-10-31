@@ -7,6 +7,7 @@ module.exports = function (app) {
 
     app.controller('DirectorsCtl',['$scope','$window','movieService', function ($scope,$window, movieService) {
         $scope.director = {};
+        $scope.busyDirectors = [];
         var editDirector = - 1;
 
         $scope.createDirector = function (e) {
@@ -21,6 +22,11 @@ module.exports = function (app) {
                 })
         };
 
+        movieService.getMovieData('director').success(function (data) {
+            console.log(data)
+            $scope.busyDirectors = data;
+        });
+        
         movieService.getDirectors().success(function (data) {
             $scope.directorList = data.map(function (director) {
                 director.birthday = new Date(director.birthday);
@@ -46,6 +52,12 @@ module.exports = function (app) {
                 });
         };
 
+        $scope.isBusyDirector = function (id) {
+            return $scope.busyDirectors.some(function (data) {
+                return data.director === id;
+            }) ? 'list-group-item busy':'list-group-item no-busy'
+        };
+        
         $scope.removeDirector = function (id) {
             movieService.removeDirector(id)
                 .success(function (data) {

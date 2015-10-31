@@ -5,6 +5,7 @@
 module.exports = function (app) {
     app.controller('CountriesCtl',['$scope','$window','movieService', function ($scope,$window,movieService) {
         $scope.country = {};
+        $scope.busyCountries = [];
        var editCountry = - 1;
 
         $scope.createCountry = function (e) {
@@ -18,9 +19,12 @@ module.exports = function (app) {
                     }
                 })
         };
-
         movieService.getCountries().success(function (data) {
             $scope.countryList = data;
+        });
+        movieService.getMovieData('country').success(function (data) {
+            console.log(data);
+            $scope.busyCountries = data;
         });
 
         $scope.isEdit = function (id) {
@@ -41,6 +45,12 @@ module.exports = function (app) {
                 });
         };
 
+        $scope.isBusyCountry = function (id) {
+            return $scope.busyCountries.some(function (data) {
+                return data.country === id;
+            }) ? 'list-group-item busy':'list-group-item no-busy'
+        };
+
         $scope.removeCountry = function (id) {
             movieService.removeCountry(id)
                 .success(function (data) {
@@ -52,5 +62,6 @@ module.exports = function (app) {
                     }
                 })
         }
+        
     }])
 };

@@ -28,16 +28,14 @@ var DB = {
     getTableValues: function (table) {
         return new Promise(function (res, rej) {
             connection.query('SELECT * FROM ??', [table], function (err, rows, fields) {
-                if (err) rej(err);
-                res(rows);
+                if(err){rej(err);}else{ res(rows)}
             });
         })
     },
     updateCountry: function (data) {
         return new Promise(function (res, rej) {
             connection.query('UPDATE countries SET ? WHERE id = ?', [{title: data.title}, data.id], function (err, rows, fields) {
-                if (err)rej(err);
-                res(rows);
+                if(err){rej(err);}else{ res(rows)}
             })
         })
     },
@@ -68,25 +66,29 @@ var DB = {
         }else {
             return new Promise(function (res, rej) {
                 connection.query('DELETE FROM ?? WHERE id = ?', [table, id], function (err, rows, fields) {
-                    if (err)rej(err);
-                    res(rows);
+                    if(err){rej(err);}else{ res(rows)}
                 })
             })
         }
     },
+    getIDs: function (table, type) {
+      return new Promise(function (res, rej) {
+          connection.query('SELECT ?? FROM ??',[type, table], function (err, rows, fields) {
+              if(err){rej(err);}else{ res(rows)}
+          })
+      })
+    },
     getMovies: function () {
         return new Promise(function (res, rej) {
             connection.query(getAllMoviesSql, function (err, rows, fields) {
-                if (err) rej(err);
-                res(rows)
+                if(err){rej(err);}else{ res(rows)}
             })
         })
     },
     getMoviesByGenre: function (id) {
         return new Promise(function (res, rej) {
             connection.query(getAllMoviesSql + " WHERE m.genre = ?", [id], function (err, rows, fields) {
-                if (err) rej(err);
-                res(rows)
+                if(err){rej(err);}else{ res(rows)}
             })
         })
     },
@@ -95,32 +97,28 @@ var DB = {
             var column = Object.keys(params)[0];
             var name = "%" + params[column] + "%";
             connection.query(getAllMoviesSql + " WHERE ?? LIKE ?", [column, name], function (err, rows, fields) {
-                if (err) rej(err);
-                res(rows)
+                if(err){rej(err);}else{ res(rows)}
             })
         })
     },
     getMovieById: function (id) {
         return new Promise(function (res, rej) {
             connection.query(getAllMoviesSql + " WHERE m.id = ?", [id], function (err, rows, fields) {
-                if (err) rej(err);
-                res(rows[0])
+                if(err){rej(err);}else{ res(rows[0])}
             })
         })
     },
     getActorsFromMovie: function (id) {
         return new Promise(function (res, rej) {
             connection.query(getActorsFromMovie + " WHERE ma.m_id = ? ", [id], function (err, rows, fields) {
-                if (err) rej(err);
-                res(rows[0])
+                if(err){rej(err);}else{ res(rows[0])}
             })
         })
     },
     createDirector: function (director) {
         return new Promise(function (res, rej) {
             connection.query('INSERT INTO directors SET ?', [director], function (err, rows, fields) {
-                if (err) rej(err);
-                res(rows.insertId)
+                if(err){rej(err);}else{ res(rows.insertId)}
             })
         })
     },
@@ -128,32 +126,28 @@ var DB = {
         return new Promise(function (res, rej) {
             connection.query('UPDATE directors SET ? WHERE id = ?',
                 [{fullName: data.fullName, birthday: data.birthday}, data.id], function (err, rows, fields) {
-                    if (err) rej(err);
-                    res(rows)
+                    if(err){rej(err);}else{ res(rows)}
                 })
         })
     },
     createCountry: function (country) {
         return new Promise(function (res, rej) {
             connection.query('INSERT INTO countries SET ?', [country], function (err, rows, fields) {
-                if (err) rej(err);
-                res(rows.insertId)
+                if(err){rej(err);}else{ res(rows.insertId)}
             })
         })
     },
     createActor: function (actor) {
         return new Promise(function (res, rej) {
             connection.query('INSERT INTO actors SET ?', [actor], function (err, rows, fields) {
-                if (err) rej(err);
-                res(rows.insertId)
+                if(err){rej(err);}else{ res(rows.insertId)}
             })
         })
     },
     updateActor: function (data) {
         return new Promise(function (res, rej) {
             connection.query('UPDATE actors SET ? WHERE id = ?', [{fullName: data.fullName}, data.id], function (err, rows, fields) {
-                if (err)rej(err);
-                res(rows)
+                if(err){rej(err);}else{ res(rows)}
             })
         })
     },

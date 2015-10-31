@@ -19,14 +19,14 @@
         <div class="col-md-6 col-lg-6 col-sm-6 ">
             <h2>Список Режиссеров</h2>
             <ul class="list-group directors">
-                <li class="list-group-item" ng-repeat="director in directorList">
+                <li ng-click="editDirector(director.id)" ng-class="isBusyDirector(director.id)" ng-repeat="director in directorList">
                     <form ng-submit="updateDirector(director)" ng-show="isEdit(director.id)" class="form-inline">
                         <input required style="width:150px" type="text" class="form-control" ng-model="director.fullName"/>
                         <input required style="width:150px" type="date" class="form-control" ng-model="director.birthday"/>
                         <span ng-click="removeDirector(director.id)" class="pull-right glyphicon glyphicon-remove"></span>
                     </form>
-                    <span class="director-item" ng-hide="isEdit(director.id)" ng-click="editDirector(director.id)">{{director.fullName}}</span>
-                    <span class="director-item" ng-hide="isEdit(director.id)" ng-click="editDirector(director.id)">{{director.birthday | date:'dd.MM.yyyy'}}</span>
+                    <span class="director-item" ng-hide="isEdit(director.id)" >{{director.fullName}}</span>
+                    <span class="director-item" ng-hide="isEdit(director.id)">{{director.birthday | date:'dd.MM.yyyy'}}</span>
                 </li>
             </ul>
         </div>

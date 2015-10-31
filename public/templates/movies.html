@@ -22,7 +22,7 @@
                 <input ng-model="search" type="text" class="form-control" placeholder="Введите название">
             </div>
             <select ng-model="searchType" class="form-control">
-                <option  value="d.fullName">По режиссеру</option>
+                <option value="d.fullName">По режиссеру</option>
                 <option selected value="m.title">По назваванию</option>
             </select>
             <button type="submit" class="btn btn-default">Поиск фильма</button>
@@ -36,8 +36,11 @@
         <genres-list></genres-list>
         <div class="col-md-9 col-lg-9 col-sm-9 col-xs-9">
             <h5>Найдено фильмов: {{movies.length}}</h5>
+
             <div class="container-fluid">
-                <movie-list movies='movies'></movie-list>
+                <div ng-repeat="movie in movies" class="movie row">
+                    <movie-item  movie='movie' remove-movie="removeMovie(movie.id)"></movie-item>
+                </div>
             </div>
         </div>
     </div>

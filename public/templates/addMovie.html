@@ -36,7 +36,7 @@
                 <tr>
                     <td>В главных ролях:</td>
                     <td>
-                        <select multiple class="form-control" ng-model="movie.actors">
+                        <select multiple class="form-control" ng-model="movieActors">
                             <option   ng-repeat="actor in actors" required  value="{{actor.id}}">{{actor.fullName}}</option>
                         </select>
                     </td>
@@ -52,7 +52,7 @@
                 <tr>
                     <td>Рейтинг:</td>
                     <td>
-                        <select style="width: 100px" class="form-control" ng-model="movie.raiting">
+                        <select style="width: 100px" class="form-control" ng-model="movie.rating">
                             <option   ng-repeat="rate in getRaitings()" ng-selected="rate == 10" value="{{rate}}">{{rate}}</option>
                         </select>
                     </td>
@@ -68,7 +68,7 @@
     </div>
     <div class="row">
         <div class="container">
-            <button class="add btn btn-primary btn-lg">Добавить фильм</button>
+            <button ng-click="addMovie()" class="add btn btn-primary btn-lg">Добавить фильм</button>
         </div>
     </div>
 </div>

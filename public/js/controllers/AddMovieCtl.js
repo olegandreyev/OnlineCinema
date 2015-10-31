@@ -6,10 +6,11 @@ module.exports = function (app) {
   app.controller('AddMovieCtl',['$scope','movieService', function ($scope,movieService) {
         $scope.movie = {
         };
+      $scope.movieActors = [];
+
       var rangeYear = [];
       var rating = [1,2,3,4,5,6,7,8,9,10];
       movieService.getGenres().success(function (data) {
-          console.log(data)
           $scope.genres = data;
       });
       movieService.getAllActors().success(function (data) {
@@ -17,10 +18,15 @@ module.exports = function (app) {
       });
       movieService.getDirectors().success(function (data) {
           $scope.directors = data;
-      })
+      });
       movieService.getCountries().success(function (data) {
           $scope.countries = data;
-      })
+      });
+      $scope.addMovie = function () {
+         movieService.addMovie($scope.movie, $scope.movieActors).success(function (data) {
+
+         })
+      };
 
 
       for(var i = 1945 ; i<=2015; i++){

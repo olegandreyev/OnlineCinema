@@ -14,7 +14,7 @@ require('./controllers/ActorsCtl')(app);
 require('./controllers/AddMovieCtl')(app);
 //directives
 require('./directives/genresList')(app);
-require('./directives/movieList')(app);
+require('./directives/movieItem')(app);
 require('./directives/back')(app);
 require('./directives/dragAndDrop')(app);
 

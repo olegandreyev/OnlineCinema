@@ -4,15 +4,14 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var multer = require('multer');
-var upload = multer({dest:'resources/'});
-var path = require('path');
 var fs = require('fs');
 
 
 var app = express();
 
 app.use(express.static('public'));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '32mb'}));
+app.use(bodyParser.urlencoded({limit: '32mb', extended: true}));
 
 var DB = require('./DBHelper');
 
@@ -156,6 +155,7 @@ app.get('/movies', function (req, res) {
 
 app.delete('/movies/:id', function (req, res) {
     DB.deleteValueById('movies',req.params.id).then(function (data) {
+        console.log(1)
         if(data){
             res.send({status:'ok'})
         }
@@ -198,12 +198,28 @@ app.get("/movies/:id/actors", function (req, res) {
     })
 });
 
-app.post('/upload', upload.single('poster'),function (req, res) {
-    var tempPath = req.file.path,
-        targetPath = path.resolve('public/resources/1.png');
-        fs.rename(tempPath, targetPath, function(err) {
-            if (err) throw err;
-        });
+app.post('/movies',function (req, res) {
+    var movie = req.body.movie;
+    var actors = req.body.actors;
+
+    var base64Data = movie.poster.replace(/^data:image\/(png||jpeg);base64,/, "");
+    var id = Date.now();
+    var posterPath = "public/resources/"+id+".png";
+    fs.writeFile(posterPath, base64Data, 'base64', function(err) {
+        delete movie.poster;
+        movie.posterSrc = '/resources/'+id+'.png';
+        movie.director = +movie.director;
+        movie.country = +movie.country;
+        movie.year = +movie.year;
+        movie.rating = +movie.rating;
+        movie.genre = +movie.genre;
+        DB.addMovie(movie,actors).then(function (id) {
+            res.send({status:'ok',id:id})
+        }).catch(function (err) {
+            console.log(err);
+            res.send({status:'error'})
+        })
+    });
 });
 
 

@@ -13,7 +13,6 @@ module.exports = function (app) {
           link: function (scope, elem, attrs) {
               var input = elem.find('input[type=file]');
               input.bind('change', function (e) {
-                  scope.movie.poster = e.target.files[0];
                   handleFiles(e.target.files[0]);
               });
 
@@ -43,7 +42,6 @@ module.exports = function (app) {
                   var files = dt.files;
                   $('#drag-n-drop').removeClass('over');
 
-                  scope.movie.poster = files[0];
                   handleFiles(files[0])
               });
 
@@ -51,13 +49,8 @@ module.exports = function (app) {
                   var fl = new FileReader();
                   fl.readAsDataURL(file);
                   fl.onload = function (e) {
-                      var img = $('<img src="'+ e.target.result+'">')
-                          .css({
-                              width:'100%',
-                              height:'100%',
-                              position:'absolute',
-                              top:'0'
-                          });
+                      var img = $('<img src="'+ e.target.result+'">');
+                      scope.movie.poster = e.target.result;
                       $('#drag-n-drop').find('h2').hide();
                       $('#drag-n-drop').append(img).find('input').hide();
 

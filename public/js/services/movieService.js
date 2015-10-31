@@ -26,6 +26,9 @@ module.exports= function (app) {
             removeMovie: function (id) {
               return $http.delete('/movies/'+id)
             },
+            getBusyActors: function () {
+              return $http.get('/actors/busy')
+            },
             addMovie: function (movieData,movieActors) {
                 return $http.post('/movies',{movie:movieData,actors:movieActors})
             },

@@ -151,6 +151,13 @@ var DB = {
             })
         })
     },
+    getBusyActors: function () {
+      return new Promise(function (res, rej) {
+          connection.query('SELECT DISTINCT a_id FROM movieactors', function (err, rows, fields) {
+              if(err){rej(err);}else{ res(rows)}
+          })
+      })
+    },
     addMovie: function (movie, actors) {
         return new Promise(function (res, rej) {
             connection.beginTransaction(function (err) {

@@ -5,6 +5,7 @@
 module.exports = function (app) {
     app.controller('ActorsCtl',['$scope','$window','movieService', function ($scope,$window,movieService) {
         $scope.actor = {};
+        $scope.busyActors = [];
         var editActor = - 1;
 
         $scope.createActor = function (e) {
@@ -21,6 +22,11 @@ module.exports = function (app) {
 
         movieService.getAllActors().success(function (data) {
             $scope.actorList = data;
+        });
+
+        movieService.getBusyActors().success(function (data) {
+            console.log(data);
+            $scope.busyActors = data;
         });
 
         $scope.isEdit = function (id) {
@@ -51,6 +57,12 @@ module.exports = function (app) {
                         })
                     }
                 })
+        };
+
+        $scope.isBusyActor = function (id) {
+            return $scope.busyActors.some(function (data) {
+                return data.a_id === id;
+            }) ? 'list-group-item busy':'list-group-item no-busy'
         }
     }])
 };

@@ -9,7 +9,7 @@
                     <td>Режиссер:</td>
                     <td>
                         <select class="form-control" ng-model="movie.director">
-                            <option   ng-repeat="director in directors" ng-selected="$index"  value="{{director.id}}">{{director.fullName}}</option>
+                            <option   ng-repeat="director in directors"  value="{{director.id}}">{{director.fullName}}</option>
                         </select>
                     </td>
                 </tr>
@@ -17,7 +17,7 @@
                     <td>Страна:</td>
                     <td>
                         <select style="width: 150px" class="form-control" ng-model="movie.country">
-                            <option   ng-repeat="country in countries" ng-selected="$index"  value="{{country.id}}">{{country.title}}</option>
+                            <option   ng-repeat="country in countries"  value="{{country.id}}">{{country.title}}</option>
                         </select>
                     </td>
                 </tr>
@@ -29,7 +29,7 @@
                     <td>Жанр:</td>
                     <td>
                         <select style="width: 150px" class="form-control" ng-model="movie.genre">
-                            <option   ng-repeat="genre in genres" ng-selected="$index"  value="{{genre.id}}">{{genre.title}}</option>
+                            <option   ng-repeat="genre in genres"  value="{{genre.id}}">{{genre.title}}</option>
                         </select>
                     </td>
                 </tr>
@@ -37,7 +37,7 @@
                     <td>В главных ролях:</td>
                     <td>
                         <select multiple class="form-control" ng-model="movieActors">
-                            <option   ng-repeat="actor in actors" required  value="{{actor.id}}">{{actor.fullName}}</option>
+                            <option   ng-repeat="actor in actors"   value="{{actor.id}}">{{actor.fullName}}</option>
                         </select>
                     </td>
                 </tr>
@@ -45,7 +45,7 @@
                     <td>Год:</td>
                     <td>
                         <select style="width: 100px" class="form-control" ng-model="movie.year">
-                          <option   ng-repeat="year in getYears()" ng-selected="year == 2015" value="{{year}}">{{year}}</option>
+                          <option   ng-repeat="year in getYears()"  value="{{year}}">{{year}}</option>
                         </select>
                     </td>
                 </tr>
@@ -53,7 +53,7 @@
                     <td>Рейтинг:</td>
                     <td>
                         <select style="width: 100px" class="form-control" ng-model="movie.rating">
-                            <option   ng-repeat="rate in getRaitings()" ng-selected="rate == 10" value="{{rate}}">{{rate}}</option>
+                            <option   ng-repeat="rate in getRaitings()"  value="{{rate}}">{{rate}}</option>
                         </select>
                     </td>
                 </tr>

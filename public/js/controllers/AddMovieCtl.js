@@ -1,9 +1,9 @@
 /**
- * Created by �� on 31.10.2015.
+ * Created by ПК on 31.10.2015.
  */
 
 module.exports = function (app) {
-  app.controller('AddMovieCtl',['$scope','movieService', function ($scope,movieService) {
+  app.controller('AddMovieCtl',['$scope','$window','movieService', function ($scope,$window,movieService) {
         $scope.movie = {
         };
       $scope.movieActors = [];
@@ -23,8 +23,15 @@ module.exports = function (app) {
           $scope.countries = data;
       });
       $scope.addMovie = function () {
-         movieService.addMovie($scope.movie, $scope.movieActors).success(function (data) {
+          var keys = Object.keys($scope.movie);
+          if(keys.length < 10){
+              alert('Заполните все поля прежде чем добавлять фильм');
+              return;
+          }
 
+         movieService.addMovie($scope.movie, $scope.movieActors).success(function (data) {
+             alert('Фильм успешно добавлен!');
+            $window.history.back();
          })
       };
 

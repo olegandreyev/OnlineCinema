@@ -1,44 +1,74 @@
 <div class="container">
     <button go-back class="btn btn-warning btn-lg">Назад</button>
     <div  class="watch movie row">
-        <h3>{{movie.title}}</h3>
-        <drag-and-drop></drag-and-drop>
+        <h3><input style="width:300px" class="form-control" ng-model="movie.title" type="text" placeholder="Название"/></h3>
+        <drag-and-drop movie="movie"></drag-and-drop>
         <div class="info col-md-7 col-lg-7 col-sm-7 col-xs-7">
             <table class="table table-condensed">
                 <tr>
                     <td>Режиссер:</td>
-                    <td></td>
+                    <td>
+                        <select class="form-control" ng-model="movie.director">
+                            <option   ng-repeat="director in directors" ng-selected="$index"  value="{{director.id}}">{{director.fullName}}</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Страна:</td>
-                    <td></td>
+                    <td>
+                        <select style="width: 150px" class="form-control" ng-model="movie.country">
+                            <option   ng-repeat="country in countries" ng-selected="$index"  value="{{country.id}}">{{country.title}}</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Бюджет:</td>
-                    <td></td>
+                    <td><input required style="width: 150px" class="form-control" type="number" ng-model="movie.fond"/></td>
                 </tr>
                 <tr>
                     <td>Жанр:</td>
-                    <td></td>
+                    <td>
+                        <select style="width: 150px" class="form-control" ng-model="movie.genre">
+                            <option   ng-repeat="genre in genres" ng-selected="$index"  value="{{genre.id}}">{{genre.title}}</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>В главных ролях:</td>
-                    <td></td>
+                    <td>
+                        <select multiple class="form-control" ng-model="movie.actors">
+                            <option   ng-repeat="actor in actors" required  value="{{actor.id}}">{{actor.fullName}}</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Год:</td>
-                    <td></td>
+                    <td>
+                        <select style="width: 100px" class="form-control" ng-model="movie.year">
+                          <option   ng-repeat="year in getYears()" ng-selected="year == 2015" value="{{year}}">{{year}}</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Рейтинг:</td>
-                    <td></td>
+                    <td>
+                        <select style="width: 100px" class="form-control" ng-model="movie.raiting">
+                            <option   ng-repeat="rate in getRaitings()" ng-selected="rate == 10" value="{{rate}}">{{rate}}</option>
+                        </select>
+                    </td>
                 </tr>
             </table>
         </div>
     </div>
-    <textarea  cols="100" rows="10"></textarea>
-
-    <div class="row"><!-- vkSrc -->
-        <input type="text"/>
+    <label for="d">Описание</label>
+    <textarea ng-model="movie.description" id="d" class="form-control"  cols="100" rows="10"></textarea>
+    <label for="vk">Ссылка на видео</label>
+    <div class="row">
+        <input id="vk" placeholder="Ссылка на видео" ng-model="movie.vkSrc" class="form-control" type="text"/>
+    </div>
+    <div class="row">
+        <div class="container">
+            <button class="add btn btn-primary btn-lg">Добавить фильм</button>
+        </div>
     </div>
 </div>

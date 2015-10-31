@@ -7,10 +7,11 @@ module.exports = function (app) {
       return {
           restrict:'E',
           templateUrl:'js/directives/dragNdrop.html',
-
+            scope:{
+                movie:'='
+            },
           link: function (scope, elem, attrs) {
               var input = elem.find('input[type=file]');
-
               input.bind('change', function (e) {
                   scope.movie.poster = e.target.files[0];
                   handleFiles(e.target.files[0]);

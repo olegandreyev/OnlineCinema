@@ -11,10 +11,12 @@ require('./controllers/WatchCtl')(app);
 require('./controllers/DirectorsCtl')(app);
 require('./controllers/CountriesCtl')(app);
 require('./controllers/ActorsCtl')(app);
+require('./controllers/AddMovieCtl')(app);
 //directives
 require('./directives/genresList')(app);
 require('./directives/movieList')(app);
 require('./directives/back')(app);
+require('./directives/dragAndDrop')(app);
 
 app.config(['$routeProvider',
     function ($routeProvider) {
@@ -41,6 +43,10 @@ app.config(['$routeProvider',
             .when('/addActor',{
                 templateUrl:'templates/actors.html',
                 controller:'ActorsCtl'
+            })
+            .when('/addMovie',{
+                templateUrl:'templates/addMovie.html',
+                controller:'AddMovieCtl'
             })
             .otherwise({
                 redirectTo:'/'
